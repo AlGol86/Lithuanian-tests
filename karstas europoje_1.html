@@ -1,0 +1,69 @@
+<p>
+Europoje <input type="text" id="g1" placeholder="—"> vasarą labai karšta. Karščiai sukelia daug 
+<input type="text" id="g2" placeholder="—"> tiek gyventojams, tiek turistams.
+</p>
+
+<p>
+Daugelyje šalių, ypač pietiniuose ir centriniuose regionuose, temperatūra dažnai didesnė negu keturiasdešimt 
+<input type="text" id="g3" placeholder="—"> laipsnių Celsijaus.
+</p>
+
+<p>
+Tokios sąlygos kelia pavojų sveikatai, ypač 
+<input type="text" id="g4" placeholder="—"> amžiaus žmonėms ir vaikams.
+Per karščius svarbu gerti daug vandens ir vengti fizinio aktyvumo.
+</p>
+
+<p>
+Reikia dėvėti 
+<input type="text" id="g5" placeholder="—"> drabužius.
+Miestuose stengiamasi padėti žmonėms, kurie kenčia nuo karščio.
+</p>
+
+<p>
+Kartais karščiai padidina gaisrų riziką, todėl 
+<input type="text" id="g6" placeholder="—"> reikia laikytis saugumo taisyklių.
+Europa vis stipriau jaučia klimato kaitos poveikį,
+todėl mokslininkai ir politikai ieško ilgalaikių 
+<input type="text" id="g7" placeholder="—">, kad nenukentėtų ekonomikos augimas ir darbuotojų gerovė.
+</p>
+
+<button onclick="check()">Tikrinti</button>
+
+<p id="result" style="font-weight: bold; margin-top: 15px;"></p>
+
+<script>
+function check() {
+  const answers = {
+    g1: "šią",
+    g2: "problemų",
+    g3: "dvejų",
+    g4: "vyresnio",
+    g5: "lengvus",
+    g6: "visiems",
+    g7: "sprendimų"
+  };
+
+  let correctCount = 0;
+  for (let id in answers) {
+    const field = document.getElementById(id);
+    const user = field.value.trim().toLowerCase();
+    const correct = answers[id];
+    if (user === correct) {
+      field.style.border = "2px solid green";
+      correctCount++;
+    } else {
+      field.style.border = "2px solid red";
+    }
+  }
+
+  const result = document.getElementById("result");
+  if (correctCount === Object.keys(answers).length) {
+    result.textContent = "✔ Visi atsakymai teisingi!";
+    result.style.color = "green";
+  } else {
+    result.textContent = "✘ Ne visi atsakymai teisingi. Teisingų: " + correctCount + " iš " + Object.keys(answers).length + ".";
+    result.style.color = "red";
+  }
+}
+</script>

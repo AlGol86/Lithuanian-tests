@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>Traukinys – pasirinkite teisingą variantą</title>
+<style>
+body { font-family: Arial, sans-serif; max-width: 700px; margin: 30px auto; line-height: 1.6; }
+select { margin-left: 10px; padding: 4px; }
+.correct { background-color: #c7f7c1; }
+.incorrect { background-color: #f7c1c1; }
+button { padding: 10px 20px; margin-top: 20px; }
+#result { font-weight: bold; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h2>Pasirinkite teisingą variantą</h2>
+
+<ol>
+  <li>Žmogus, kuris dirba traukinyje:
+    <select data-answer="Kontrolierius">
+      <option value="">—</option>
+      <option>Bagažininkas</option>
+      <option>Keleivis</option>
+      <option>Kontrolierius</option>
+      <option>Lagaminas</option>
+      <option>Traukinys</option>
+      <option>Bilietas</option>
+      <option>Stotis</option>
+      <option>Vaizduoklis</option>
+    </select>
+  </li>
+
+  <li>Transportas, kuris važiuoja geležinkeliu:
+    <select data-answer="Traukinys">
+      <option value="">—</option>
+      <option>Bagažininkas</option>
+      <option>Keleivis</option>
+      <option>Kontrolierius</option>
+      <option>Lagaminas</option>
+      <option>Traukinys</option>
+      <option>Bilietas</option>
+      <option>Stotis</option>
+      <option>Vaizduoklis</option>
+    </select>
+  </li>
+
+  <li>Žmogus, kuris važiuoja transportu:
+    <select data-answer="Keleivis">
+      <option value="">—</option>
+      <option>Bagažininkas</option>
+      <option>Keleivis</option>
+      <option>Kontrolierius</option>
+      <option>Lagaminas</option>
+      <option>Traukinys</option>
+      <option>Bilietas</option>
+      <option>Stotis</option>
+      <option>Vaizduoklis</option>
+    </select>
+  </li>
+
+  <li>Bagažas, kuriame laikome daiktus:
+    <select data-answer="Lagaminas">
+      <option value="">—</option>
+      <option>Bagažininkas</option>
+      <option>Keleivis</option>
+      <option>Kontrolierius</option>
+      <option>Lagaminas</option>
+      <option>Traukinys</option>
+      <option>Bilietas</option>
+      <option>Stotis</option>
+      <option>Vaizduoklis</option>
+    </select>
+  </li>
+
+  <li>Vieta, kurioje sustoja traukiniai:
+    <select data-answer="Stotis">
+      <option value="">—</option> 
+      <option>Bagažininkas</option>
+      <option>Keleivis</option>
+      <option>Kontrolierius</option>
+      <option>Lagaminas</option>
+      <option>Traukinys</option>
+      <option>Bilietas</option>
+      <option>Stotis</option>
+      <option>Vaizduoklis</option>
+    </select>
+  </li>
+
+  <li>Dokumentas, kuris leidžia keliauti:
+    <select data-answer="Bilietas">
+      <option value="">—</option>
+      <option>Bagažininkas</option>
+      <option>Keleivis</option>
+      <option>Kontrolierius</option>
+      <option>Lagaminas</option>
+      <option>Traukinys</option>
+      <option>Bilietas</option>
+      <option>Stotis</option>
+      <option>Vaizduoklis</option>
+    </select>
+  </li>
+</ol>
+
+<button onclick="checkAnswers()">Tikrinti atsakymus</button>
+<div id="result"></div>
+
+<script>
+function checkAnswers() {
+  let selects = document.querySelectorAll("select");
+  let correct = 0;
+
+  selects.forEach(sel => {
+    if (sel.value === sel.dataset.answer) {
+      sel.className = "correct";
+      correct++;
+    } else if (sel.value !== "") {
+      sel.className = "incorrect";
+    } else {
+      sel.className = "";
+    }
+  });
+
+  document.getElementById("result").innerHTML = 
+      "Teisingi atsakymai: " + correct + " iš " + selects.length;
+}
+</script>
+
+</body>
+</html>
