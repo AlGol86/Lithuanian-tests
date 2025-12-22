@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>Užduotis – Giedrė ir Matas (Dropdown)</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 30px auto; }
+select { padding: 4px; margin: 0 4px; }
+.correct { background-color: #c7f7c1; }
+.incorrect { background-color: #f7c1c1; }
+#result { font-weight: bold; margin-top: 20px; }
+button { padding: 10px 20px; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h2>Giedrė ir Matas – pasirinkite teisingą variantą</h2>
+
+<p>Sveikas, Matai!</p>
+
+<p>
+<select data-answer="Šį">
+  <option value="">—</option>
+  <option>Šį</option>
+  <option>Šitą</option>
+  <option>Šią</option>
+</select>
+ savaitgalį bus išpardavimas. 
+<select data-answer="Noriu">
+  <option value="">—</option>
+  <option>Noriu</option>
+  <option>Noriju</option>
+  <option>Nori</option>
+</select>
+ nusipirkti naują kuprinę, bet nežinau, kaip išsirinkti.
+</p>
+
+<p>
+Gal 
+<select data-answer="galėtum">
+  <option value="">—</option>
+  <option>galetum</option>
+  <option>galėtum</option>
+  <option>galėtume</option>
+</select>
+ eiti su manimi? Tavo patarimai 
+<select data-answer="būtų">
+  <option value="">—</option>
+  <option>buna</option>
+  <option>bus</option>
+  <option>būtų</option>
+  <option>yra</option>
+</select>
+ labai naudingi!
+</p>
+
+<p>Lauksiu atsakymo. <br> Giedrė</p>
+
+<p>Labas, Giedrė.</p>
+
+<p>
+Atsiprašau, bet negaliu eiti 
+<select data-answer="į parduotuvę">
+  <option value="">—</option>
+  <option>į parduotuves</option>
+  <option>į parduotuvę</option>
+  <option>parduotuvėje</option>
+</select>
+, nes būsiu varžybose. Gal susitikime 
+<select data-answer="kitą">
+  <option value="">—</option>
+  <option>kitas</option>
+  <option>kitą</option>
+  <option>kita</option>
+  <option>kitąjį</option>
+</select>
+ kartą?
+</p>
+
+<p>
+Klausk, 
+<select data-answer="jei">
+  <option value="">—</option>
+  <option>kad</option>
+  <option>jei</option>
+  <option>kokio</option> 
+</select>
+ tau reikės patarimo.
+</p>
+
+<p>Sėkmės! <br> Matas</p>
+
+<button onclick="checkAnswers()">Tikrinti atsakymus</button>
+
+<div id="result"></div>
+
+<script>
+function checkAnswers() {
+    let selects = document.querySelectorAll("select");
+    let correct = 0;
+
+    selects.forEach(sel => {
+        let answer = sel.dataset.answer;
+        if (sel.value === "") {
+            sel.className = "";
+            return;
+        }
+        if (sel.value === answer) {
+            sel.className = "correct";
+            correct++;
+        } else {
+            sel.className = "incorrect";
+        }
+    });
+
+    document.getElementById("result").innerHTML =
+      "Teisingi atsakymai: " + correct + " iš " + selects.length;
+}
+</script>
+
+</body>
+</html>
+

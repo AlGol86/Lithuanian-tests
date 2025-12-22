@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>Užduotis – Giedrė ir Matas (Gaps)</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 30px auto; }
+input { padding: 4px; width: 180px; margin: 0 2px; }
+button { padding: 10px 20px; margin-top: 20px; }
+#result { font-weight: bold; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h2>Giedrė ir Matas – užpildykite tarpus</h2>
+
+<p>Sveikas, Matai!</p>
+
+<p>
+<input type="text" id="g1" placeholder="—"> savaitgalį bus išpardavimas. 
+<input type="text" id="g2" placeholder="—"> nusipirkti naują kuprinę, bet nežinau, kaip išsirinkti.
+</p>
+
+<p>
+Gal <input type="text" id="g3" placeholder="—"> eiti su manimi? Tavo patarimai <input type="text" id="g4" placeholder="—"> labai naudingi!
+</p>
+
+<p>Lauksiu atsakymo. <br> Giedrė</p>
+
+<p>Labas, Giedrė.</p>
+
+<p>
+Atsiprašau, bet negaliu eiti <input type="text" id="g5" placeholder="—">, nes būsiu varžybose. Gal susitikime <input type="text" id="g6" placeholder="—"> kartą?
+</p>
+
+<p>Klausk, <input type="text" id="g7" placeholder="—">tau reikės patarimo.</p>
+
+<p>Sėkmės! <br> Matas</p>
+
+<button onclick="check()">Tikrinti</button>
+
+<p id="result"></p>
+
+<script>
+function check() {
+  const answers = {
+    g1: "Šį",
+    g2: "Noriu",
+    g3: "galėtum",
+    g4: "būtų",
+    g5: "į parduotuvę",
+    g6: "kitą",
+    g7: "jei"
+  };
+
+  let correctCount = 0;
+  for (let id in answers) {
+    const field = document.getElementById(id);
+    const user = field.value.trim();
+    const correct = answers[id];
+    if (user === correct) {
+      field.style.border = "2px solid green";
+      correctCount++;
+    } else {
+      field.style.border = "2px solid red";
+    }
+  }
+
+  const result = document.getElementById("result");
+  if (correctCount === Object.keys(answers).length) {
+    result.textContent = "✔ Visi atsakymai teisingi!";
+    result.style.color = "green";
+  } else {
+    result.textContent = "✘ Teisingi atsakymai: " + correctCount + " iš " + Object.keys(answers).length;
+    result.style.color = "red";
+  }
+}
+</script>
+
+</body>
+</html>
+

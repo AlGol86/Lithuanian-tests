@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>Užduotis – užrašykite mėnesių pavadinimus</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 30px auto; }
+input { padding: 4px; width: 180px; margin: 0 2px; }
+button { padding: 10px 20px; margin-top: 20px; }
+#result { font-weight: bold; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h2>Užduotis – užrašykite mėnesių pavadinimus</h2>
+<p>
+<p><input type="text" id="g1" placeholder="—"> (January). </p>
+<p><input type="text" id="g2" placeholder="—"> (February). </p>
+<p><input type="text" id="g3" placeholder="—"> (March). </p>
+<p><input type="text" id="g4" placeholder="—"> (April). </p>
+<p><input type="text" id="g5" placeholder="—"> (May). </p>
+<p><input type="text" id="g6" placeholder="—"> (June). </p>
+<p><input type="text" id="g7" placeholder="—"> (July). </p>
+<p><input type="text" id="g8" placeholder="—"> (August). </p>
+<p><input type="text" id="g9" placeholder="—"> (September). </p>
+<p><input type="text" id="g10" placeholder="—"> (October). </p>
+<p><input type="text" id="g11" placeholder="—"> (November). </p>
+<p><input type="text" id="g12" placeholder="—"> (December). </p>
+</p>
+
+<button onclick="check()">Tikrinti</button>
+
+<p id="result"></p>
+Sausis (saus.)
+Vasaris (vasar.)
+Kovas (kov.)
+Balandis (bal.)
+Gegužė (gegužė)
+Birželis (birž.)
+Liepa (liepa)
+Rugpjūtis (rugpj.)
+Rugsėjis (rugs./rugs.)
+Spalis (spal.)
+Lapkritis (lapk.)
+Gruodis (gruod.)
+<script>
+function check() {
+  const answers = {
+    g1: "Sausis",
+    g2: "Vasaris",
+    g3: "Kovas",
+    g4: "Balandis",
+    g5: "Gegužė",
+    g6: "Birželis",
+    g7: "Liepa",
+    g8: "Rugpjūtis",
+    g9: "Rugsėjis",
+    g10: "Spalis",
+    g11: "Lapkritis",
+    g12: "Gruodis"
+  };
+
+  let correctCount = 0;
+  for (let id in answers) {
+    const field = document.getElementById(id);
+    const user = field.value.trim().toLocaleLowerCase("lt-LT");
+    const correct = answers[id].toLocaleLowerCase("lt-LT");
+    if (user === correct) {
+      field.style.border = "2px solid green";
+      correctCount++;
+    } else {
+      field.style.border = "2px solid red";
+    }
+  }
+
+  const result = document.getElementById("result");
+  if (correctCount === Object.keys(answers).length) {
+    result.textContent = "✔ Visi atsakymai teisingi!";
+    result.style.color = "green";
+  } else {
+    result.textContent = "✘ Teisingi atsakymai: " + correctCount + " iš " + Object.keys(answers).length;
+    result.style.color = "red";
+  }
+}
+</script>
+
+</body>
+</html>
+

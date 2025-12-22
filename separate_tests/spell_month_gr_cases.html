@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>Užduotis – mėnesiai skirtingais linksniais</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 900px; margin: 30px auto; }
+input { padding: 4px; width: 180px; margin: 0 6px; }
+button { padding: 10px 20px; margin-top: 20px; }
+#result { font-weight: bold; margin-top: 20px; }
+.correct { border: 2px solid green; }
+.wrong { border: 2px solid red; }
+</style>
+</head>
+<body>
+
+<h2>Užduotis – įrašykite mėnesių pavadinimus teisingu linksniu</h2>
+
+<p>1. Aš gimiau <input type="text" id="g1" placeholder="—"> (January).</p>
+<p>2. Ji grįš pabaigoje <input type="text" id="g2" placeholder="—"> (February).</p>
+<p>3. Mes susitiksime <input type="text" id="g3" placeholder="—"> (March).</p>
+<p>4. Projektas bus baigtas viduryje <input type="text" id="g4" placeholder="—"> (April).</p>
+<p>5. Egzaminas vyks pradžioje <input type="text" id="g5" placeholder="—"> (May).</p>
+<p>6. Atostogos prasidės <input type="text" id="g6" placeholder="—"> (June).</p>
+<p>7. Festivalis vyks <input type="text" id="g7" placeholder="—"> (July).</p>
+<p>8. Aš dirbau visą <input type="text" id="g8" placeholder="—"> (August).</p>
+<p>9. Mokykla prasideda <input type="text" id="g9" placeholder="—"> (September).</p>
+<p>10. Lapai krenta <input type="text" id="g10" placeholder="—"> (October).</p>
+<p>11. Jis gimė pabaigoje <input type="text" id="g11" placeholder="—"> (November).</p>
+<p>12. Šventės vyksta <input type="text" id="g12" placeholder="—"> (December).</p>
+
+<button onclick="check()">Tikrinti</button>
+
+<p id="result"></p>
+
+<script>
+function check() {
+  const answers = {
+    g1: "sausį",        // January – galininkas
+    g2: "vasario",     // February – kilmininkas
+    g3: "kovą",        // March – galininkas
+    g4: "balandžio",   // April – kilmininkas
+    g5: "gegužės",     // May – kilmininkas
+    g6: "birželį",     // June – galininkas
+    g7: "liepą",       // July – galininkas
+    g8: "rugpjūtį",    // August – galininkas
+    g9: "rugsėjį",     // September – galininkas
+    g10: "spalį",      // October – galininkas
+    g11: "lapkričio",  // November – kilmininkas
+    g12: "gruodį"      // December – galininkas
+  };
+
+  let correctCount = 0;
+
+  for (let id in answers) {
+    const field = document.getElementById(id);
+    const user = field.value.trim().toLocaleLowerCase("lt-LT");
+    const correct = answers[id].toLocaleLowerCase("lt-LT");
+
+    if (user === correct) {
+      field.className = "correct";
+      correctCount++;
+    } else {
+      field.className = "wrong";
+    }
+  }
+
+  const result = document.getElementById("result");
+  if (correctCount === Object.keys(answers).length) {
+    result.textContent = "✔ Visi atsakymai teisingi!";
+    result.style.color = "green";
+  } else {
+    result.textContent = "✘ Teisingi atsakymai: " + correctCount + " iš " + Object.keys(answers).length;
+    result.style.color = "red";
+  }
+}
+</script>
+
+</body>
+</html>

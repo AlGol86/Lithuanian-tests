@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>A2 Užduotis – Karščiai Europoje</title>
+<style>
+  body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 30px auto; }
+  select { padding: 4px; margin: 0 4px; }
+  .correct { background-color: #c7f7c1; }
+  .incorrect { background-color: #f7c1c1; }
+  #result { font-weight: bold; margin-top: 20px; }
+  button { padding: 10px 20px; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<p>
+Prieš metus miesto šiaurėje duris atvėrė nauja mokykla. Ji yra 
+<select data-answer="moderni">
+  <option value="">—</option>
+  <option>modernas</option>
+  <option>modernos</option>
+  <option>moderna</option>
+  <option>moderni</option>
+  <option>modernus</option>
+  <option>modern</option>
+</select>
+ ir labai jauki. Mokykloje gali mokytis apie 500 
+<select data-answer="mokinių">
+  <option value="">—</option>
+  <option>mokiniaus</option>
+  <option>mokinios</option>
+  <option>mokinių</option>
+  <option>mokinius</option>
+  <option>mokinis</option>
+  <option>mokinės</option>
+</select>
+.
+</p>
+<p>
+Mokyklos klasės yra 
+<select data-answer="didelės">
+  <option value="">—</option>
+  <option>didelė</option>
+  <option>didelės</option>
+  <option>didelis</option>
+  <option>didelys</option>
+</select>
+ ir 
+<select data-answer="šviesios">
+  <option value="">—</option>
+  <option>šviesos</option>
+  <option>šviesios</option>
+  <option>šviesi</option>
+  <option>šviesas</option>
+</select>
+. Jose rasite naujausių technologijų. Mokytojams čia patogu dirbti, o mokiniams – smagu mokytis. 
+Mokyklos direktorė džiaugiasi gamtos mokslų laboratorijomis, kurios puikiai tinka mokinių eksperimentams ir praktiniams darbams.
+</p>
+<p>
+Mokykla turi modernią sporto salę, didelį stadioną ir kelias sporto aikšteles. Todėl mokiniai čia gali sportuoti ne tik per pamokas, 
+bet ir po pamokų. Tie, kurie nori lavinti meninius talentus, lanko šokių ir muzikos 
+<select data-answer="studiją">
+  <option value="">—</option>
+  <option>studijoje</option>
+  <option>studijos</option>
+  <option>studiją</option>
+  <option>studija</option>
+</select>
+. Šiais metais muzikos mokytoja subūrė paauglių chorą.
+</p>
+<p>
+Mokyklos bibliotekoje yra daug knygų, žurnalų ir kitų 
+<select data-answer="informacijos">
+  <option value="">—</option>
+  <option>informacijo</option>
+  <option>informacijas</option>
+  <option>informacijų</option>
+  <option>informacijos</option>
+</select>
+ šaltinių. Bibliotekoje yra labai ramu, todėl mokiniai čia naudojasi 
+<select data-answer="internetu">
+  <option value="">—</option>
+  <option>internetu</option>
+  <option>internetų</option>
+  <option>interneta</option>
+  <option>internetą</option>
+  <option>internetas</option>
+</select>
+, mokosi ir ruošia namų darbus. Bibliotekininkės iniciatyva čia veikia knygų bičiulių klubas.
+</p>
+<p>
+Mokykla rūpinasi mokinių gerove. Mokykloje dirba sociologas ir psichologė, kurie padeda mokiniams spręsti asmenines ir mokymosi 
+<select data-answer="problemas">
+  <option value="">—</option>
+  <option>problema</option>
+  <option>problemas</option>
+  <option>problemos</option>
+  <option>problemų</option>
+  <option>problemai</option>
+</select>
+. 
+Mokyklos direktorė, mokytojai ir kiti specialistai bendradarbiauja su tėvais. Jie organizuoja tėvams seminarus, rengia susitikimus ir nori, 
+kad tėvai daugiau žinotų apie vaikus ir mokyklos veiklą. Mokykla yra atvira ir laukia pasiūlymų, nes šios švietimo įstaigos 
+<select data-answer="darbuotojams">
+  <option value="">—</option>
+  <option>darbuotojas</option>
+  <option>darbuotojai</option>
+  <option>darbuotojams</option>
+  <option>darbuotojos</option>
+  <option>darbuotoja</option>
+</select>
+ rūpi kiekvienas mokinys.
+</p>
+
+
+<button onclick="checkAnswers()">Tikrin­ti atsakymus</button>
+
+<div id="result"></div>
+
+<script>
+function checkAnswers() {
+    let selects = document.querySelectorAll("select");
+    let correct = 0;
+
+    selects.forEach(sel => {
+        let answer = sel.dataset.answer;
+        if (sel.value === "") {
+            sel.className = "";
+            return;
+        }
+        if (sel.value === answer) {
+            sel.className = "correct";
+            correct++;
+        } else {
+            sel.className = "incorrect";
+        }
+    });
+
+    document.getElementById("result").innerHTML =
+      "Teisingi atsakymai: " + correct + " iš " + selects.length;
+}
+</script>
+
+</body>
+</html>
+

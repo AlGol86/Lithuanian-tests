@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>Teisinga / Neteisinga užduotis</title>
+<style>
+  body { font-family: Arial; max-width: 900px; margin: auto; line-height: 1.6; }
+  .question { 
+    margin: 15px 0; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+  }
+  .correct-answer { background: #c8e6c9; }
+  .wrong-answer { background: #ffcdd2; }
+  button { margin: 5px; padding: 6px 12px; cursor: pointer; }
+  #result { font-weight: bold; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h2>Pažymėkite, kurie teiginiai teisingi, kurie – neteisingi.</h2>
+
+<p>
+Prieš metus miesto šiaurėje duris atvėrė nauja mokykla. Ji yra moderni ir labai jauki. Mokykloje gali mokytis apie 500 mokinių.
+</p>
+<p>
+Mokyklos klasės yra didelės ir šviesios. Jose rasite naujausių technologijų. Mokytojams čia patogu dirbti, o mokiniams – smagu mokytis. 
+Mokyklos direktorė džiaugiasi gamtos mokslų laboratorijomis, kurios puikiai tinka mokinių eksperimentams ir praktiniams darbams.
+</p>
+<p>
+Mokykla turi modernią sporto salę, didelį stadioną ir kelias sporto aikšteles. Todėl mokiniai čia gali sportuoti ne tik per pamokas, 
+bet ir po pamokų. Tie, kurie nori lavinti meninius talentus, lanko šokių ir muzikos studiją. Šiais metais muzikos mokytoja subūrė paauglių chorą.
+</p>
+<p>
+Mokyklos bibliotekoje yra daug knygų, žurnalų ir kitų informacijos šaltinių. Bibliotekoje yra labai ramu, todėl mokiniai čia naudojasi internetu, 
+mokosi ir ruošia namų darbus. Bibliotekininkės iniciatyva čia veikia knygų bičiulių klubas.
+</p>
+<p>
+Mokykla rūpinasi mokinių gerove. Mokykloje dirba sociologas ir psichologė, kurie padeda mokiniams spręsti asmenines ir mokymosi problemas. 
+Mokyklos direktorė, mokytojai ir kiti specialistai bendradarbiauja su tėvais. Jie organizuoja tėvams seminarus, rengia susitikimus ir nori, 
+kad tėvai daugiau žinotų apie vaikus ir mokyklos veiklą. Mokykla yra atvira ir laukia pasiūlymų, nes šios švietimo įstaigos darbuotojams rūpi kiekvienas mokinys.
+</p>
+
+<form id="quiz">
+<div class="question">
+1. Ji priima maždaug puse tūkstančio vaikų.  
+<br>
+<label><input type="radio" name="q1" value="T"> Teisingas</label>
+<label><input type="radio" name="q1" value="N"> Neteisingas</label>
+</div>
+
+<div class="question">
+2. Mokykloje nėra sporto aikštelių.  
+<br>
+<label><input type="radio" name="q2" value="T"> Teisingas</label>
+<label><input type="radio" name="q2" value="N"> Neteisingas</label>
+</div>
+
+<div class="question">
+3. Mokiniai gali sportuoti tik per pamokas.  
+<br>
+<label><input type="radio" name="q3" value="T"> Teisingas</label>
+<label><input type="radio" name="q3" value="N"> Neteisingas</label>
+</div>
+
+<div class="question">
+4. Bibliotekoje mokiniai naudojasi internetu.  
+<br>
+<label><input type="radio" name="q4" value="T"> Teisingas</label>
+<label><input type="radio" name="q4" value="N"> Neteisingas</label>
+</div>
+
+<div class="question">
+5. Mokykloje dirba psichologas ir sociologas.  
+<br>
+<label><input type="radio" name="q5" value="T"> Teisingas</label>
+<label><input type="radio" name="q5" value="N"> Neteisingas</label>
+</div>
+
+<div class="question">
+6. Tėvai nėra kviečiami į mokyklos renginius.  
+<br>
+<label><input type="radio" name="q6" value="T"> Teisingas</label>
+<label><input type="radio" name="q6" value="N"> Neteisingas</label>
+</div>
+
+</form>
+
+<button onclick="checkAll()">Tikrinti atsakymus</button>
+<div id="result"></div>
+
+<script>
+const correctAnswers = {
+  q1: "T",
+  q2: "N",
+  q3: "N",
+  q4: "T",
+  q5: "T",
+  q6: "N"
+};
+
+function checkAll() {
+  let score = 0;
+
+  document.querySelectorAll('.question').forEach(q => {
+    q.classList.remove('correct-answer', 'wrong-answer');
+  });
+
+  for (let q in correctAnswers) {
+    const selected = document.querySelector(`input[name="${q}"]:checked`);
+    const questionDiv = document.querySelector(`input[name="${q}"]`).closest('.question');
+
+    if (!selected) {
+      questionDiv.classList.add("wrong-answer");
+      continue;
+    }
+    if (selected.value === correctAnswers[q]) {
+      score++;
+      questionDiv.classList.add("correct-answer");
+    } else {
+      questionDiv.classList.add("wrong-answer");
+    }
+  }
+
+  document.getElementById("result").innerText = "Jūsų rezultatas: " + score + " / 6";
+}
+</script>
+
+</body>
+</html>

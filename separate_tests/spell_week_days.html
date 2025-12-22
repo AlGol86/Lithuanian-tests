@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>Užduotis – užrašykite mėnesių pavadinimus</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 30px auto; }
+input { padding: 4px; width: 180px; margin: 0 2px; }
+button { padding: 10px 20px; margin-top: 20px; }
+#result { font-weight: bold; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h2>Užduotis – užrašykite mėnesių pavadinimus</h2>
+<p>
+<p><input type="text" id="g1" placeholder="—"> (Monday). </p>
+<p><input type="text" id="g2" placeholder="—"> (Tuesday). </p>
+<p><input type="text" id="g3" placeholder="—"> (Wednesday). </p>
+<p><input type="text" id="g4" placeholder="—"> (Thursday). </p>
+<p><input type="text" id="g5" placeholder="—"> (Friday). </p>
+<p><input type="text" id="g6" placeholder="—"> (Saturday). </p>
+<p><input type="text" id="g7" placeholder="—"> (Sunday). </p>
+</p>
+
+<button onclick="check()">Tikrinti</button>
+
+<p id="result"></p>
+
+<script>
+function check() {
+  const answers = {
+    g1: "pirmadienis",
+    g2: "antradienis",
+    g3: "trečiadienis",
+    g4: "ketvirtadienis",
+    g5: "penktadienis",
+    g6: "šeštadienis",
+    g7: "sekmadienis"
+  };
+
+  let correctCount = 0;
+  for (let id in answers) {
+    const field = document.getElementById(id);
+    const user = field.value.trim().toLocaleLowerCase("lt-LT");
+    const correct = answers[id].toLocaleLowerCase("lt-LT");
+    if (user === correct) {
+      field.style.border = "2px solid green";
+      correctCount++;
+    } else {
+      field.style.border = "2px solid red";
+    }
+  }
+
+  const result = document.getElementById("result");
+  if (correctCount === Object.keys(answers).length) {
+    result.textContent = "✔ Visi atsakymai teisingi!";
+    result.style.color = "green";
+  } else {
+    result.textContent = "✘ Teisingi atsakymai: " + correctCount + " iš " + Object.keys(answers).length;
+    result.style.color = "red";
+  }
+}
+</script>
+
+</body>
+</html>
+

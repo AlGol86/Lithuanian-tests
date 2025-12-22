@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>A2 Užduotis – Karščiai Europoje</title>
+<style>
+  body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 30px auto; }
+  select { padding: 4px; margin: 0 4px; }
+  .correct { background-color: #c7f7c1; }
+  .incorrect { background-color: #f7c1c1; }
+  #result { font-weight: bold; margin-top: 20px; }
+  button { padding: 10px 20px; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h2>Vasaros karščiai Europoje – Užduotis su pasirenkamais atsakymais</h2>
+
+<p>
+Europoje 
+<select data-answer="šią">
+  <option value="">—</option>
+  <option>tą</option>
+  <option>tąs</option>
+  <option>šią</option>
+  <option>šį</option>
+  <option>šiuo</option>
+  <option>kitą</option>
+</select>
+ vasarą labai karšta. Karščiai sukelia daug 
+<select data-answer="problemų">
+  <option value="">—</option>
+  <option>sprendimos</option>
+  <option>sprendimų</option>
+  <option>problemos</option>
+  <option>problemų</option>
+  <option>džiaugsmų</option>
+  <option>džiaugsmos</option>
+</select>
+ tiek gyventojams, tiek turistams.
+</p>
+
+<p>
+Daugelyje šalių, ypač pietiniuose ir centriniuose regionuose, temperatūra dažnai didesnė negu keturiasdešimt 
+<select data-answer="du">
+  <option value="">—</option>
+  <option>dvejų</option>
+  <option>du</option>
+  <option>dviem</option>
+  <option>dveji</option>
+</select>
+ laipsniai Celsijaus.
+</p>
+
+<p>
+Tokios sąlygos kelia pavojų sveikatai, ypač 
+<select data-answer="vyresnio">
+  <option value="">—</option>
+  <option>vyresnio</option>
+  <option>jauno</option>
+  <option>vidutinio</option>
+</select>
+ amžiaus žmonėms ir vaikams.
+</p>
+
+<p>
+Reikia dėvėti 
+<select data-answer="lengvus">
+  <option value="">—</option>
+  <option>lengvus</option>
+  <option>sunkius</option>
+  <option>spalvotus</option>
+</select>
+ drabužius.
+</p>
+
+<p>
+Kartais padidėja gaisrų rizika, todėl 
+<select data-answer="visiems">
+  <option value="">—</option>
+  <option>visiems</option>
+  <option>niekam</option>
+  <option>kai kuriems</option>
+</select>
+ reikia laikytis saugumo taisyklių.
+</p>
+
+<p>
+Mokslininkai ir politikai ieško ilgalaikių 
+<select data-answer="sprendimų">
+  <option value="">—</option>
+  <option>sprendimų</option>
+  <option>problemų</option>
+  <option>bandymų</option>
+</select>
+ , kad nenukentėtų ekonomikos augimas ir darbuotojų gerovė.
+</p>
+
+<button onclick="checkAnswers()">Tikrin­ti atsakymus</button>
+
+<div id="result"></div>
+
+<script>
+function checkAnswers() {
+    let selects = document.querySelectorAll("select");
+    let correct = 0;
+
+    selects.forEach(sel => {
+        let answer = sel.dataset.answer;
+        if (sel.value === "") {
+            sel.className = "";
+            return;
+        }
+        if (sel.value === answer) {
+            sel.className = "correct";
+            correct++;
+        } else {
+            sel.className = "incorrect";
+        }
+    });
+
+    document.getElementById("result").innerHTML =
+      "Teisingi atsakymai: " + correct + " iš " + selects.length;
+}
+</script>
+
+</body>
+</html>
